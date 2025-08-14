@@ -1,4 +1,4 @@
-# IBS RAG Assistant 🤖📚
+# RAG Assistant 🤖📚
 
 A Retrieval-Augmented Generation (RAG) system built with FastAPI and LangChain to provide intelligent answers by leveraging uploaded PDF documents and OpenAI's GPT models.
 
@@ -22,7 +22,7 @@ RAG is a cutting-edge AI technique that combines the power of **retrieval** and 
 
 ## 🚀 Features
 
-- **📄 PDF Upload**: Upload medical documents, research papers, and IBS-related content
+- **📄 PDF Upload**: Upload documents, research papers, and content
 - **🔍 Intelligent Retrieval**: Uses MMR (Maximal Marginal Relevance) for diverse, relevant results
 - **💬 Contextual Q&A**: Ask questions and get answers based on your uploaded documents
 - **⚡ Fast API**: RESTful API built with FastAPI for high performance
@@ -80,7 +80,7 @@ import scikit-learn as sklearn   # Traditional ML
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/erevos-13/RAG-python.git
-cd ibs-rag
+cd rag-system
 ```
 
 ### 2. Create Virtual Environment
@@ -128,7 +128,7 @@ Body: file (PDF)
 curl -X POST "http://localhost:8000/upload" \
      -H "accept: application/json" \
      -H "Content-Type: multipart/form-data" \
-     -F "file=@ibs_research.pdf"
+     -F "file=@research_document.pdf"
 ```
 
 #### 2. Ask Question
@@ -138,14 +138,14 @@ GET /ask?q=your_question_here
 
 **Example:**
 ```bash
-curl -X GET "http://localhost:8000/ask?q=What do you know about orfas?"
+curl -X GET "http://localhost:8000/ask?q=What are the key findings in this document?"
 ```
 
 **Response:**
 ```json
 {
-  "question": "What do you know about orfas?",
-  "answer": "Based on the uploaded documents, orfeas is ..."
+  "question": "What are the key findings in this document?",
+  "answer": "Based on the uploaded documents, the key findings are..."
 }
 ```
 
@@ -191,13 +191,15 @@ curl -X GET "http://localhost:8000/ask?q=What do you know about orfas?"
 
 ## 🚀 Usage Examples
 
-### Generic Research Assistant
+### Research Assistant
 ```python
-# Upload medical research papers
-transcriptorpheusandeurydicePOST /upload -> "ibs_treatment_guidelines.pdf"
+# Upload research papers
+POST /upload -> "research_paper.pdf"
+POST /upload -> "technical_documentation.pdf"
 
 # Ask specific questions
-GET /ask?q="How is Orfeas?"
+GET /ask?q="What is the main conclusion of this research?"
+GET /ask?q="What methodologies were used in the study?"
 ```
 
 
@@ -207,12 +209,12 @@ GET /ask?q="How is Orfeas?"
 - **API Keys**: Store OpenAI API keys in environment variables
 - **File Validation**: Implement proper file type validation
 - **Rate Limiting**: Consider implementing rate limiting for production
-- **Data Privacy**: Ensure HIPAA compliance for medical data
+- **Data Privacy**: Ensure proper data handling and privacy compliance
 
 ## 📈 Performance Optimization
 
 ### Current Configuration
-- **Chunk Size**: 500 characters (optimal for large text)
+- **Chunk Size**: 500 characters (optimal for document text)
 - **Chunk Overlap**: 50 characters (maintains context)
 - **Retrieval**: Top 3 results with MMR (λ=0.7)
 - **Model**: GPT-4 with controlled output length
@@ -250,4 +252,4 @@ For questions, issues, or contributions:
 
 ---
 
-**Built with ❤️ and Python for better research through AI**
+**Built with ❤️ and Python for better research and knowledge discovery through AI**
